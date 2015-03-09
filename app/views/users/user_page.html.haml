@@ -1,0 +1,98 @@
+%head
+  =javascript_include_tag "application"
+%body.bodyClass
+  .header
+    .panel
+      .panel-default
+        .head
+          %h1 Hangman
+          %p Do it or Die for it.
+          -#=current_user.fname
+        .log
+          %p.wins Wins : #{@wins}
+          %p.lose Lose : #{@lose}
+        .logout
+          %a{:href=>"/logout"}Logout
+        .user
+          %p
+            welcome #{current_user.fname} #{current_user.lname}
+            =image_tag current_user.photo,:class=>"thumb"
+        .clear
+    -#=form_for :Category,:as=>:new_category,:url => { :controller => "game", :action => "start_game"},:remote=>true do |f|
+    -#  .field
+    -#    = f.label :cat_name, t('name')
+    -#    = f.text_field :name
+    -#  .actions
+      -#    = f.submit
+  .row
+    .col-md-2
+      .panel
+        .panel-default
+        .aside
+          %h2 Categories
+          %hr
+          .add_new
+            -@abc.each do |i|
+              %h4
+                =link_to i[:cat_name],:action=>"set_category",:controller => "game",:id=>i[:id],:remote=>true
+                -##{i[:cat_name]}
+    .col-md-10
+      .panel
+        .panel-default
+        .section
+          %h3 Select Category
+          %hr
+          .row
+            .col-md-4
+              .img
+                =image_tag "hang0.gif"
+            .col-md-8
+              .game
+                %p
+                -#%h2 Start playing game
+                .formDiv
+                  %hr
+                  =form_tag :remote=>true,:controller=>"game",:action=>"start_game" do
+                    =label_tag 'Enter Text'
+                    =text_field_tag 'letterIp',nil,{:class=>"letterIp",:autofocus=>true}
+                    =button_tag 'Submit',:class=>"btn btn-warning"
+                  %hr
+                .row
+                  .col-md-12
+                    %h2
+                      =label_tag @wordFormed,nil,:class=>"wordFormed"
+                    %br
+                .flash-error
+                .flash-success
+                .invalid-word
+                .new-game
+                  =link_to 'New Game',:action=>"new_game",:controller=>"game",:remote=>true
+
+  .row
+    .panel
+      .panel-default
+        .footer-user
+          .contact
+            %p
+              find code on :
+              = link_to "https://github.com/kiranpawar87/Kiran_Project.git" do
+                GitHub
+            %p
+              Website :
+              = link_to "http://localhost:3000/users/sign_up" do
+                www.hangman.com
+            %p &copy copyrights are reserved
+
+-#=form_tag :controller=>"game",:action=>"start_game",:remote=>true do
+-#  %h1 Hangman Game
+-#  %table{:class=> "table-content"}
+-#    %tr
+-#      %td
+-#        =label_tag 'User Id'
+-#      %td
+-#        =text_field_tag 'uid',@abc[:fname],:placeholder=>"Enter something"
+-#    %tr
+-#      %td
+-#        =button_tag 'submit',{:class=>"btn btn-success"}
+-#      %td
+-#        =button_tag 'cancel',{:class=>"btn btn-success"}

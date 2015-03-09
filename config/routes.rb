@@ -1,4 +1,48 @@
-Device::Application.routes.draw do
+Devise::Application.routes.draw do
+
+
+  # get "users/admin_page"
+  # get "users/user_page"
+  #
+
+  devise_for :users ,  :controllers => {:registrations => "users/registrations",:sessions=>"users/sessions",:passwords=>"users/passwords"}
+   root :to=>"users#index"
+  devise_scope :user do
+    get "/login" => "devise/sessions#new"
+    get "/logout" => "devise/sessions#destroy"
+    get "/signup"=>"devise/registrations#new"
+  end
+
+  resource :users do
+
+  get "admin_page"
+  get "users_page"
+  get "index"
+  get "view_users"
+  get "user_page"
+  get "manage_users"
+  get "edit_record"
+  post "save_record"
+  get "user_stat"
+  post "search"
+  get "add_category"
+  get "view_sub_cat"
+  get "view"
+  get "delete_category"
+  get "update_category"
+  post "update_record"
+  get "change_pass"
+  post "reset_pass"
+  get "search"
+  get "found_users"
+  end
+
+
+  post "game/start_game"
+  get "game/set_category"
+  get "game/set_word"
+  get "game/new_game"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,4 +1,4 @@
-Device::Application.configure do
+Devise::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -26,4 +26,8 @@ Device::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  config.reload_classes_only_on_change = false
+  config.action_mailer.default_url_options = { :host => 'http://localhost:3000' }
+
+  Paperclip.options[:command_path] = "/usr/local/bin/"
 end

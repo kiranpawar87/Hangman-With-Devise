@@ -1,0 +1,49 @@
+%nav.navbar.navbar-default{:role => "navigation"}
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      -#%a.navbar-brand{:href => "#"} Brand
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            Users
+            %span.caret
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                =link_to 'Manage User',{:controller => "/users", :action => "admin_page", :name=>'Manage',:target=>"middleFrame"}
+        %li
+          =link_to 'User Statistics',{:controller => "/users", :action => "admin_page", :name=>'user_stat',:target=>"middleFrame"}
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            Categories
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a{:href => "/users/add_category",:target=>"middleFrame"} Manage Category
+      %form.navbar-form.navbar-left{:controller=>"/users",:action=>"search",:target=>"middleFrame"}
+        .form-group
+          %input.form-control{:placeholder => "Firstname Lastname", :type => "text",:name=>"uname"}
+        %button.btn.btn-default{:type => "submit"} Submit
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          =link_to 'Play Game',{:controller => "/users", :action => "user_page", :name=>'Play'}
+        %li
+          %a Welcome #{current_user.email}
+        %li.dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+            Account
+            %span.caret
+          %ul.dropdown-menu{:role => "menu"}
+            %li
+              %a{:href => "/logout"} Logout
+%div.middle-page
+  .panel
+    .panel-primary
+      %iframe{:src =>@source,:name=>"middleFrame",:class=>"middleFrame"}

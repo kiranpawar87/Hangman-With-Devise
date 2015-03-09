@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Device::Application.load_tasks
+Devise::Application.load_tasks

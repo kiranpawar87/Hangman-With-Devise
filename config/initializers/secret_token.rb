@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Device::Application.config.secret_key_base = '9849c3803855437be277785bcddc3e28b9bf91df8fd7abfed21a5e73457b592c93aea6f17c766153ff6d85c9cc423bc3aca96e91d80bac48f07c04eec1dc41e4'
+Devise::Application.config.secret_key_base = '63e96b82de6b37b91396dafb998a9906cb65d09214f7dafef7e00078e31672ccd7f729be1ba664e50b11506e8b586541d05ecaf6e50f70a19bfeab5fe859c9de'
