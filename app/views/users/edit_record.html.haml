@@ -4,7 +4,7 @@
     %h1 Edit Record
     %hr
     =form_tag({:controller => "users",:action=>"save_record"},{:multipart => true}) do
-      =image_tag @users.photo,:class=>"thumb"
+      =image_tag @users.photo(:medium),:class=>"thumb"
       ="#{@users[:photo]}"
       %table{:class=> "table-content"}
         %tr

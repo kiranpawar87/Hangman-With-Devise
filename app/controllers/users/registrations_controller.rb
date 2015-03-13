@@ -42,4 +42,8 @@ class Users::RegistrationsController <Devise::RegistrationsController
   def destroy
     super
   end
+
+  def sign_up_params
+    params.require(:user).permit(:fname, :lname, :email,:password,:password_confirmation)
+  end
 end

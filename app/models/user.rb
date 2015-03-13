@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable
 
-  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :photo, :styles => { :medium => "300x300>", :thumb => "100x100>" },:processors => [:thumbnail,:compression]
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
   validates_presence_of :fname,:lname, presence: true
